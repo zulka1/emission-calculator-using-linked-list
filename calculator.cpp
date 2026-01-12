@@ -27,7 +27,7 @@ void pushBack(calc*& head, int no, string nama, string unit, float faktorCO2, fl
     newNode->nama = nama;
     newNode->unit = unit;
     newNode->jumlahUnit = jumlahUnit;
-    newNode->CO2 = faktorCO2 * jumlahUnit;          
+    newNode->CO2 = faktorCO2 * jumlahUnit;         
     newNode->CH4 = faktorCH4 * jumlahUnit;
     newNode->N20 = faktorN20 * jumlahUnit;
 
@@ -46,14 +46,14 @@ void pushBack(calc*& head, int no, string nama, string unit, float faktorCO2, fl
 }
 
 void deleteNode(calc*& head, int noD, int &id) {
-    if (head->no == noD) {           
+    if (head->no == noD) {          
         calc* temp = head;
         head = head->next;
         delete temp;
 
-        calc* curr = head;          
+        calc* curr = head;         
         while (curr != NULL) {
-            curr->no--;      
+            curr->no--;     
             curr = curr->next;
         }
         id--;
@@ -68,11 +68,11 @@ void deleteNode(calc*& head, int noD, int &id) {
     }
        
     if (curr->next == NULL) {
-        cout << "Node dengan nomor " << noD << " tidak ditemukan" << endl;      
+        cout << "Node dengan nomor " << noD << " tidak ditemukan" << endl;    
         return;
     }
     
-    if (curr->next != NULL) {          
+    if (curr->next != NULL) {         
         calc* temp = curr->next;
         curr->next = temp->next;
         delete temp;
@@ -89,7 +89,7 @@ void deleteNode(calc*& head, int noD, int &id) {
 }
 
 void printList(calc* head, bool &chk) {
-    if (head == NULL) {         
+    if (head == NULL) {        
         cout << "List kosong" << endl;
         chk = true;
         return;
