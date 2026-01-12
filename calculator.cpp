@@ -18,7 +18,7 @@ struct Emisi {
     string unit;
     float CO2;
     float CH4;
-    float N20;   
+    float N20;  
 };
 
 void pushBack(calc*& head, int no, string nama, string unit, float faktorCO2, float faktorCH4, float faktorN20, float jumlahUnit) {
@@ -46,17 +46,12 @@ void pushBack(calc*& head, int no, string nama, string unit, float faktorCO2, fl
 }
 
 void deleteNode(calc*& head, int noD, int &id) {
-    if (head == NULL) {   
-        cout << "List kosong" << endl;
-        return;
-    }
-
     if (head->no == noD) {           
         calc* temp = head;
         head = head->next;
         delete temp;
 
-        calc* curr = head;         
+        calc* curr = head;          
         while (curr != NULL) {
             curr->no--;      
             curr = curr->next;
@@ -67,13 +62,13 @@ void deleteNode(calc*& head, int noD, int &id) {
         return;
     }
 
-    calc* curr = head;         
+    calc* curr = head;          
     while (curr->next != NULL && curr->next->no != noD) {
         curr = curr->next;
     }
        
     if (curr->next == NULL) {
-        cout << "Node dengan nomor " << noD << " tidak ditemukan" << endl;  
+        cout << "Node dengan nomor " << noD << " tidak ditemukan" << endl;      
         return;
     }
     
@@ -93,10 +88,10 @@ void deleteNode(calc*& head, int noD, int &id) {
     }
 }
 
-
-void printList(calc* head) {
-    if (head == NULL) {        
+void printList(calc* head, bool &chk) {
+    if (head == NULL) {         
         cout << "List kosong" << endl;
+        chk = true;
         return;
     }
 
@@ -206,7 +201,12 @@ int main() {
 
             case 2: {
                 int noD;
-                printList(head);
+                bool chk = false;
+                printList(head, chk);
+
+                if (chk == true) {
+                    break;
+                }
                 cout << "----------------------------------------" << endl;
                 cout << "Masukkan no yang ingin dihapus : ";
                 cin >> noD;
@@ -214,12 +214,15 @@ int main() {
                 break;
             }
 
-            case 3:
-                printList(head);
+            case 3: {
+                bool chk = false;
+                printList(head, chk);
                 break;
-
+            }
+            
             case 4: {
-                printList(head);
+                bool chk = false;
+                printList(head, chk);
                 float totalCO2 = 0, totalCH4 = 0, totalN20 = 0;
                 calc* temp = head;
 
@@ -248,5 +251,5 @@ int main() {
 
     } while (status == true);
 
-return 0;
+    return 0;
 }
